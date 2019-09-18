@@ -31,3 +31,13 @@ In all cases, templated hooks **will not overwrite** existing hooks, either pre-
 | Name | Function |
 |-|-|
 | `post-commit` | This hook writes all commits to a `commit_log.txt` file located in your home directory. Formatting for commit logs is as follows: `Wed, Sep 18 2019 01:48pm [repository:branch] commit message` |
+
+## Bonus
+
+Add this function to your `.bashrc` or `.bash_profile` to make pulling up and searching commits as easy as typing `commits` into your terminal:
+
+```
+commits () {
+  cat ~/commit_log.txt | grep $@
+}
+```
