@@ -25,3 +25,9 @@ The hooks in this repository will automatically be installed in any newly initia
 To use them with an existing repository, run `git init` in that repository to reinitialize with the templated hooks.
 
 In all cases, templated hooks **will not overwrite** existing hooks, either pre-existing or previously installed via these templates. This means that if you want to make changes to any hook template and want to see those changes carry over to that hook in a repository, you will need to delete the current hook in that repository's `.git` directory and then re-run `git init`.
+
+## Hooks
+
+| Name | Function |
+|-|-|
+| `post-commit` | This hook writes all commits to a `commit_log.txt` file located in your home directory. Formatting for commit logs is as follows: `Wed, Sep 18 2019 01:48pm [repository:branch] First line of commit message` |
