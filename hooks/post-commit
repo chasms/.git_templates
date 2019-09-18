@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+# Write git commit messages to a log file
+#
+# You will have to install the git gem for this to work:
+#   gem install git
+#
+# Name this file 'post-commit' and drop it in the directory '.git/hooks'  in
+# any repository that you want to log. Make sure the file is executable. You
+# can also add this to your git templates, which will put it in every new
+# repository or to existing repositories by re-running git init.
+#
+# A commit message in the log should look this this:
+#   Wed, Sep 18 2019 01:48pm [repository:branch] First line of commit message
+
+require "git"
+
+log_file = ENV['HOME'] + "/commit_log.txt"
+repo = Git.open(Dir.pwd)
+repo_name = Dir.pwd[%r{[\.\-\w]+$}]                             # top directory
+date = repo.log.first.date.strftime("%a, %b %d %Y %I:%M%P")     # format date
+message = repo.log.first.message
+branch = repo.log.first.name
+
+File.open(log_file, "a") do |log|
+  log.puts "#{date} [#{repo_name}:#{branch}] #{message}"
+  puts "#{date} [#{repo_name}:#{branch}] #{message}"
+end
+
+puts "Updated #{log_file}"
