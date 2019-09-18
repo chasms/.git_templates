@@ -3,7 +3,7 @@
 # Write git commit messages to a log file
 #
 # A commit message in the log should look this this:
-#   Wed, Sep 18 2019 01:48pm [repository:branch] First line of commit message
+#   Wed, Sep 18 2019 01:48pm [repository:branch] commit message
 
 require "git"
 
