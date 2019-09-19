@@ -38,6 +38,6 @@ Add this function to your `.bashrc` or `.bash_profile` to make pulling up and se
 
 ```
 commits () {
-  cat ~/commit_log.txt | grep $@
+  cat ~/commit_log.txt | grep "$*"
 }
 ```
