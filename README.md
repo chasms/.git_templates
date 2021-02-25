@@ -5,18 +5,18 @@ This repository is designed to provide a means for setting up global git hooks v
 ## Setup
 
 1. Clone this repository directly into your home directory:
-    ```
-    cd ~
-    git clone git@github.com:chasms/.git_templates.git
-    ```
+   ```
+   cd ~
+   git clone git@github.com:chasms/.git_templates.git
+   ```
 1. Set this repo up as your git template directory:
-    ```
-    git config --global init.templatedir '~/.git_templates'
-    ```
+   ```
+   git config --global init.templatedir '~/.git_templates'
+   ```
 1. Install the `git` gem to enable scripting:
-    ```
-    gem install git
-    ```
+   ```
+   gem install git
+   ```
 
 ## Usage
 
@@ -28,9 +28,10 @@ In all cases, templated hooks **will not overwrite** existing hooks, either pre-
 
 ## Hooks
 
-| Name | Function |
-|-|-|
-| `post-commit` | This hook writes all commits to a `commit_log.txt` file located in your home directory. Formatting for commit logs is as follows: `Wed, Sep 18 2019 01:48pm [repository:branch] commit message` |
+| Name                 | Function                                                                                                                                                                                                                                                        |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `post-commit`        | This hook writes all commits to a `commit_log.txt` file located in your home directory. Formatting for commit logs is as follows: `Wed, Sep 18 2019 01:48pm [repository:branch] commit message`                                                                 |
+| `prepare-commit-msg` | This hook will append the everything before the first `/` in a branch name to the beginning of the commit message e.g. branch `JIRA-123/fix-routes` with commit message `Fixed route issues` will create a final commit message `[JIRA-123] Fixed route issues` |
 
 ## Bonus
 
