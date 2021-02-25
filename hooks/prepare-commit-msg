@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Include any branches for which you wish to disable this script
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+    BRANCHES_TO_SKIP=(master develop staging qa)
+fi
+# Get the current branch name and check if it is excluded
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+# Trim it down to get the parts we're interested in
+TRIMMED=$(cut -d "/" -f 1 <<< $BRANCH_NAME)
+# If it isn't excluded, preprend the trimmed branch identifier to the given message
+# If there is no difference between the original branch and the trimmed branch, don't prepend anything
+if [ -n "$BRANCH_NAME" ] &&  ! [[ $BRANCH_EXCLUDED -eq 1 ]] && [ ${#BRANCH_NAME} != ${#TRIMMED} ]; then
+  sed -i.bak -e "1s/^/[$TRIMMED] - /" $1
+fi
